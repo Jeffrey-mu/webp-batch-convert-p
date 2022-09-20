@@ -33,7 +33,9 @@
   "engines": {
     "node": ">=12"
   },
-  "scripts": {},
+  "scripts": {
+    "release": "np"
+  },
   "dependencies": {
     "cwebp-bin": "^6.1.2",
     "minimist": "^1.2.5"
