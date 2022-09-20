@@ -1,45 +1,32 @@
-[![webp-batch-convert](https://nodei.co/npm/webp-batch-convert.png)](https://npmjs.org/package/webp-batch-convert)
-
 Webp Batch Convert
 ========
 webp 图片批量转换。将指定目录内 png/jpg/jpeg/bmp/gif 格式的图片批量转换为 webp 格式。
 
-[![NPM version][npm-image]][npm-url]
-[![node version][node-image]][node-url]
-[![npm download][download-image]][download-url]
-[![GitHub issues][issues-img]][issues-url]
-[![GitHub forks][forks-img]][forks-url]
-[![GitHub stars][stars-img]][stars-url]
-[![minzipped size][bundlephobia-img]][bundlephobia-url]
+> 该工具是基于[lzwme/webp-batch-convert](https://github.com/lzwme/webp-batch-convert)二次开发, 添加一些配置项,以及细节优化。
+```mk
+### 新增配置
+1. replace_suffix: true。
+2. gif: true 过滤gif图片, 直接将gif图片copy到新文件夹，保留动效。
 
-[stars-img]: https://img.shields.io/github/stars/lzwme/webp-batch-convert.svg
-[stars-url]: https://github.com/lzwme/webp-batch-convert/stargazers
-[forks-img]: https://img.shields.io/github/forks/lzwme/webp-batch-convert.svg
-[forks-url]: https://github.com/lzwme/webp-batch-convert/network
-[issues-img]: https://img.shields.io/github/issues/lzwme/webp-batch-convert.svg
-[issues-url]: https://github.com/lzwme/webp-batch-convert/issues
-[npm-image]: https://img.shields.io/npm/v/webp-batch-convert.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/webp-batch-convert
-[node-image]: https://img.shields.io/badge/node.js-%3E=_12-green.svg?style=flat-square
-[node-url]: https://nodejs.org/download/
-[download-image]: https://img.shields.io/npm/dm/webp-batch-convert.svg?style=flat-square
-[download-url]: https://npmjs.org/package/webp-batch-convert
-[bundlephobia-url]: https://bundlephobia.com/result?p=webp-batch-convert@latest
-[bundlephobia-img]: https://badgen.net/bundlephobia/minzip/webp-batch-convert@latest
-
+### 优化
+1. 当文件超出一定数量 递归执行会造成内存溢出 需要优化 递归调用方式
+“事件驱动” （Event-Driven）的特性
+在 JavaScript 中，由于其 “事件驱动” （Event-Driven）的特性，使用 "setTimeout"、 “nextTick” 等方式对指定函数的调用，实际上是将该函数的引用（指针）储存起来，并在适当的时候调用。[参考](https://github.com/pfan123/Articles/issues/50)。
+2. 空文件过滤，file.size 为零判空。
+```
 ## 快速上手
 
 ### 在项目目录中安装
 
 ```bash
-npm install --save-dev webp-batch-convert
+npm install --save-dev webp-batch-convert-p
 ```
 
 ### 使用示例(nodejs 模块 API 方式)
 
 ```js
-//import convert from 'webp-batch-convert';
-const convert = require('webp-batch-convert');
+//import convert from 'webp-batch-convert-p';
+const convert = require('webp-batch-convert-p');
 let res;
 
 // 示例一: 生成 img 目录下的图片文件至 webp 目录
@@ -62,6 +49,8 @@ const cwebpOpts = {
     f: 60,
     /** use simple filter instead of strong */
     nostrong: false,
+    /** 是否替换图片后缀 */
+    replace_suffix: true
 };
 // 清空输出目录
 convert.utils.delDir('./webp');
@@ -71,14 +60,14 @@ console.log('total: ', res);
 
 ### `best-practice`
 
-- [https://github.com/lzwme/webp-batch-convert/tree/master/best-practice](https://github.com/lzwme/webp-batch-convert/tree/master/best-practice)
+- [https://github.com/Jeffrey-mu/webp-batch-convert-p/tree/master/best-practice](https://github.com/Jeffrey-mu/webp-batch-convert-p/tree/master/best-practice)
 
 ## 命令行方式使用(cwebp-batch)
 
 ### 全局安装
 
 ```js
-npm install -g webp-batch-convert
+npm install -g webp-batch-convert-p
 ```
 
 ### 使用示例
@@ -137,6 +126,6 @@ convert.utils.delDir('./webp', /\.webp$/);
 
 ## License
 
-`webp-batch-convert` is released under the MIT license.
+`webp-batch-convert-p` is released under the MIT license.
 
-该插件由[志文工作室](https://lzw.me)开发和维护。
+
