@@ -13,6 +13,7 @@ webp 图片批量转换。将指定目录内 png/jpg/jpeg/bmp/gif 格式的图�
 “事件驱动” （Event-Driven）的特性
 在 JavaScript 中，由于其 “事件驱动” （Event-Driven）的特性，使用 "setTimeout"、 “nextTick” 等方式对指定函数的调用，实际上是将该函数的引用（指针）储存起来，并在适当的时候调用。[参考](https://github.com/pfan123/Articles/issues/50)。
 2. 空文件过滤，file.size 为零判空。
+3. 目标嵌套目录可深度工作。
 ```
 ## 快速上手
 
