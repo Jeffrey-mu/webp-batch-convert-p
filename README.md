@@ -5,7 +5,7 @@ webp 图片批量转换。将指定目录内 png/jpg/jpeg/bmp/gif 格式的图�
 > 该工具是基于[lzwme/webp-batch-convert](https://github.com/lzwme/webp-batch-convert)二次开发, 添加一些配置项,以及细节优化。
 ```mk
 ### 新增配置
-1. replace_suffix: true。
+1. replace_suffix: true, 开启替换webp后缀，默认保留源文件后缀。
 2. gif: true 过滤gif图片, 直接将gif图片copy到新文件夹，保留动效。
 
 ### 优化
