@@ -34,7 +34,8 @@
     "node": ">=12"
   },
   "scripts": {
-    "release": "np"
+    "release": "np",
+    "test": "node test"
   },
   "dependencies": {
     "cwebp-bin": "^6.1.2",
